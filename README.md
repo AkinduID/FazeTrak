@@ -17,6 +17,10 @@ This project aims to develop a face tracking webcam. The system will detect and 
 ## Camera Options
 ### 1. Exsisting WebCam
 The Basic Option is to use an exsisting webcam and convert it to a smart webcam. The webcam will be moounted on a pan and tilt servo bracket and the video feed will be captured by the desktop application and facial detection algorithms will run on the PC. The Desktop Application Can Control the Servo bracket via Arduino serial communication. This method is very cost effective since i already own a webcam (Logitech C270 HD). Project like this are already availible as tutorials. So if i choose this option i will focus more on the features of the desktop application and optimizing the servo movements. A major concern is the weight of the webcam. Since the webcam is heavier than the other options, I will have to optimize the motors or choose a bigger mount.
+| Image 1 | Image 2 |
+|---|---|
+| ![Logitech C270 HD webCam](Assets/logitech_c270.jpg) | ![Pan and Tilt Servo Bracket](Assets/servo_mount.jpg) |
+
 
 ### 2. AI-Thinker ESP32 Camera Development Board
 The AI-Thinker ESP32 Camera Development Board is considered a compact, cost-effective solution for integrating camera functionalities with the ESP32 microcontroller. However, during testing, a significant issue was encountered: 
