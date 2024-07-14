@@ -17,13 +17,10 @@ This project aims to develop a face tracking webcam. The system will detect and 
 ## Camera Options
 ### 1. Exsisting WebCam
 The Basic Option is to use an exsisting webcam and convert it to a smart webcam. The webcam will be moounted on a pan and tilt servo bracket and the video feed will be captured by the desktop application and facial detection algorithms will run on the PC. The Desktop Application Can Control the Servo bracket via Arduino serial communication. This method is very cost effective since i already own a webcam (Logitech C270 HD). Project like this are already availible as tutorials. So if i choose this option i will focus more on the features of the desktop application and optimizing the servo movements. A major concern is the weight of the webcam. Since the webcam is heavier than the other options, I will have to optimize the motors or choose a bigger mount.
-| Image 1 | Image 2 |
-|---|---|
-| ![Logitech C270 HD webCam](Assets/logitech_c270.jpg) | ![Pan and Tilt Servo Bracket](Assets/servo_mount.jpg) |
 
 <div class="image-container">
-  <img src="Assets/logitech_c270.jpg" width="100" alt="Logitech C270 HD webCam" />
-  <img src="Assets/servo_mount.jpg" width="100" alt="Pan and Tilt Servo Bracket" />
+  <img src="Assets/logitech_c270.jpg" width="200" alt="Logitech C270 HD webCam" />
+  <img src="Assets/servo_mount.jpg" width="200" alt="Pan and Tilt Servo Bracket" />
 </div>
 
 <style>
@@ -44,8 +41,8 @@ The AI-Thinker ESP32 Camera Development Board is considered a compact, cost-effe
  - Given that the board was purchased from a local store, there is a possibility it might be a cheap copy of the original.
 Further testing is required to either find a fix for this issue, identify a development board without this problem, or devise a method to cool down the chip.
 <div class="image-container">
-  <img src="Assets/esp32cam.jpg" width="100" alt="AI-Thinker ESP32 Camera Board" />
-  <img src="Assets/esp32cam_mounted.png" width="100" alt="AI-Thinker ESP32 Camera Board" />
+  <img src="Assets/esp32cam.jpg" width="200" alt="AI-Thinker ESP32 Camera Board" />
+  <img src="Assets/esp32cam_mounted.png" width="200" alt="AI-Thinker ESP32 Camera Board" />
 </div>
 
 ### 3. OpenMV Camera Board
@@ -56,8 +53,8 @@ However, availability and cost are major issues.
  - The lowest shipping cost is listed on AliExpress, which can sometimes be an unreliable source.
 Given the high stakes associated with ordering from AliExpress, further research is required to determine a reliable and cost-effective way to obtain this board
 <div class="image-container">
-  <img src="Assets/openmv.jpg" width="100" alt="OpenMV Camera Board" />
-  <img src="Assets/openmv_mounted.jpg" width="100" alt="OpenMV Camera Board" />
+  <img src="Assets/openmv.jpg" width="200" alt="OpenMV Camera Board" />
+  <img src="Assets/openmv_mounted.jpg" width="200" alt="OpenMV Camera Board" />
 </div>
 
 ### 4. Raspberry Pi Zero W/Raspberry Pi 4 Model B + Pi Camera
@@ -68,8 +65,8 @@ Using a Raspberry Pi (either the Zero W or Model 4) along with a Pi Camera offer
  - Using a single-board computer (SBC) between the camera and the PC adds unnecessary complexity.
 Additionally, while this setup allows for the development of a more sophisticated Linux desktop application it essentially mirrors the first option but with a development environment in Linux rather than on the PC directly.
 <div class="image-container">
-  <img src="Assets/rpi0w.jpg" width="100" alt="Raspberry Pi" />
-  <img src="Assets/rpi_mounted.PNG" width="100" alt="Raspberry Pi" />
+  <img src="Assets/rpi0w.jpg" width="200" alt="Raspberry Pi" />
+  <img src="Assets/rpi_mounted.PNG" width="200" alt="Raspberry Pi" />
 </div>
 
 ### 5. OV7670 Camera Module + Arduino/ESP32
@@ -79,8 +76,8 @@ The main concerns with this option are
  - interfacing complexity.
  - These limitations pose a higher risk of failure or degraded performance in the final implementation.
 <div class="image-container">
-  <img src="Assets/ov7670.jpg" width="100" alt="ov7670" />
-  <img src="Assets/ov7670_mounted.png" width="100" alt="ov7670" />
+  <img src="Assets/ov7670.jpg" width="200" alt="ov7670" />
+  <img src="Assets/ov7670_mounted.png" width="200" alt="ov7670" />
 </div>
 
 
