@@ -23,6 +23,6 @@ This project aims to develop a face tracking webcam. The system will detect and 
 | **Image Resolution**   | Varies (Up to Full HD)     | VGA (640x480)          | VGA (Up to OV2640)     | Up to 8MP (Depending on Camera) | VGA (320x240)                |
 | **Frame Rate**         | Varies (Up to 30fps)       | Lower (10-20fps)       | Higher (30-60fps)      | Up to 30fps                  | Lower (10-20fps)               |
 | **Face Tracking**      | Requires separate program on PC | Can be implemented on ESP32 | Built-in libraries for face detection | Requires library installation | Requires library installation  |
-| **Cost**               | Moderate (Webcam + Servos) | Low                    | Moderate               | Moderate                    | Low (Module) + Arduino/ESP32 board |
+| **Cost**               | Low (Alraedy have a WebCam) | Low                    | High due to shipping costs (not availible in local stores)              | Moderate                    | Low (Module) + Arduino/ESP32 board |
 | **Ease of Use**        | Easiest (Familiar webcam)  | Moderate (Learning Arduino) | Moderate (Learning OpenMV) | Moderate (Learning Raspberry Pi) | Most Difficult (Requires hardware setup & coding) |
 | **Flexibility**        | Most Flexible (Usable for other PC projects) | Limited                | Good (OpenMV libraries) | Excellent (Extensive software ecosystem) | Limited (Requires custom coding) |
