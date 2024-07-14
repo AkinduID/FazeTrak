@@ -47,3 +47,14 @@ The main concerns with this option are
  - the limited image quality, processing power
  - interfacing complexity.
  - These limitations pose a higher risk of failure or degraded performance in the final implementation.
+
+### Summary
+
+| Camera Option                         | Pros                                                                 | Cons                                                                                     |
+|---------------------------------------|----------------------------------------------------------------------|------------------------------------------------------------------------------------------|
+| Existing Webcam (e.g., Logitech C270) | Cost-effective, readily available, tutorials available, can focus on desktop app more since the basic implemtation is easy.                | Camera Weight Concers, requires optimization for servo movements, primarily PC-dependent                    |
+| AI-Thinker ESP32 Camera Development Board | Compact, cost-effective, integrates with ESP32                         | Overheating issue, potential for cheap copies affecting performance, lack of fixes         |
+| OpenMV Camera Board                   | Powerful processing on-board, standalone capability                    | Expensive, availability issues, high shipping costs, potential reliability concerns        |
+| Raspberry Pi + Pi Camera              | Flexible, capable of handling image processing tasks, popular platform | Moderate cost, potential overheating, adds complexity with SBC and desktop application     |
+| OV7670 Camera Module + Arduino/ESP32   | Very affordable, basic functionality                                   | Limited image quality, processing power, interfacing complexity, potential performance issues |
+
