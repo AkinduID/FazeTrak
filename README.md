@@ -6,7 +6,7 @@ This project aims to develop a face tracking webcam. The system will detect and 
 ## Proposed Features
 - Real-time face detection and tracking
 - Locking and Unlocking a face using hand gestures
-- Desktop Application for furhter features
+- Desktop Application for further features
 
 ## Proposed Technologies and Tools
 - **Programming Languages**: Python, C/C++
@@ -22,17 +22,6 @@ The Basic Option is to use an exsisting webcam and convert it to a smart webcam.
   <img src="Assets/logitech_c270.jpg" width="200" alt="Logitech C270 HD webCam" />
   <img src="Assets/servo_mount.jpg" width="200" alt="Pan and Tilt Servo Bracket" />
 </div>
-
-<style>
-  .image-container {
-    display: flex;
-  }
-
-  .image-container img {
-    margin: 0 10px; /* Adjust spacing between images as needed */
-  }
-</style>
-
 
 ### 2. AI-Thinker ESP32 Camera Development Board
 The AI-Thinker ESP32 Camera Development Board is considered a compact, cost-effective solution for integrating camera functionalities with the ESP32 microcontroller. However, during testing, a significant issue was encountered: 
