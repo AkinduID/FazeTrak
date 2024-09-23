@@ -61,7 +61,7 @@ def track_face(x, y, w, h):
 
 while True:
     ret, frame = cap.read()
-    #frame = imutils.resize(frame, width=500)
+    #  frame = imutils.resize(frame, width=500)
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray, scaleFactor=1.05, minNeighbors=5, minSize=(30, 30), flags=cv2.CASCADE_SCALE_IMAGE)
 
