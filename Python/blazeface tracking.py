@@ -71,7 +71,7 @@ with mp_face_detection.FaceDetection(
                 tilt_position = max(0, min(tilt_position, servo_tilt_range))
 
                 # Send servo control commands (adjust format according to your microcontroller)
-                ser.write(f"P{pan_position}\nT{tilt_position}\n".encode())
+                arduino.write(f"P{pan_position}\nT{tilt_position}\n".encode())
 
                 # Draw bounding box and center point for visualization
                 cv2.rectangle(image, (box_x_min, box_y_min), (box_x_min + box_width, box_y_min + box_height), (0, 255, 0), 2)
