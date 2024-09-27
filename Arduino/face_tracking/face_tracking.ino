@@ -19,6 +19,7 @@ void setup() {
 void loop() {
   if (Serial.available() > 0) {
     String command = Serial.readStringUntil('\n');
+    Serial.print(command);
     
     // Parse the command
     if (command.startsWith("P") && command.indexOf("T") > 0) {
