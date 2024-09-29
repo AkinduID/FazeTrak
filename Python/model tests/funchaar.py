@@ -5,7 +5,7 @@ from IPython.display import clear_output
 import time
 
 def haar_detector(cap):
-    face_detector = cv2.CascadeClassifier(cv.data.haarcascades + 'haarcascade_frontalface_default.xml')
+    face_detector = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
     processing_times = []
     capture_count = 0
     while cap.isOpened() and capture_count<11:
