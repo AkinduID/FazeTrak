@@ -19,9 +19,9 @@ def holistic_detector(cap):
             if not ret:
                 break
             start_time=time.perf_counter()
-            image_rgb=cv2.cvtColor(frame,cv.COLOR_BGR2RGB)
+            image_rgb=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
             results=holistic.process(image_rgb)
-            image_bgr=cv2.cvtColor(image_rgb,cv.COLOR_RGB2BGR)
+            image_bgr=cv2.cvtColor(image_rgb,cv2.COLOR_RGB2BGR)
 
             if results.face_landmarks:
                 h, w, _ = frame.shape
@@ -37,7 +37,7 @@ def holistic_detector(cap):
             if capture_count>0:
                 processing_times.append(processing_time)
             capture_count+=1
-            image_rgbnew=cv.cvtColor(image_bgr,cv.COLOR_BGR2RGB)
+            image_rgbnew=cv2.cvtColor(image_bgr,cv2.COLOR_BGR2RGB)
             clear_output(wait=True)
             plt.imshow(image_rgbnew)
             plt.axis('off')
