@@ -18,7 +18,7 @@ model_path = Path(r"D:\Documents\Campus\S5\2 - Embedded Systems Project\Repo\Fac
 latest_result = None
 
 def blazeface_detector(cap):
-    def print_result(result: FaceDetectorResult, output_image: mp.Image, timestamp_ms: int):
+    def print_result(result, output_image: mp.Image, timestamp_ms: int):
         global latest_result
         latest_result = result
     
