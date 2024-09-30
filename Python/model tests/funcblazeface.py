@@ -17,7 +17,7 @@ model_path = Path(r"D:\Documents\Campus\S5\2 - Embedded Systems Project\Repo\Fac
 
 latest_result = None
 
-def blazeface_detector(video,model_path):
+def blazeface_detector(video):
     def print_result(result, output_image: mp.Image, timestamp_ms: int):
         global latest_result
         latest_result = result
@@ -83,6 +83,7 @@ def blazeface_detector(video,model_path):
             plt.title('Time to detect face in frame')
             plt.savefig('blazeface_bar.png')
     cap.release()
-    return processing_times
+    print(processing_times)
+    return average_processing_time
 
-# li=blazeface_detector('vid1.mp4')
+li=blazeface_detector('vid1.mp4')

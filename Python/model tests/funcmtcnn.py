@@ -47,4 +47,4 @@ def mtcnn_detector(video):
         plt.title('Time to detect face in frame')
         plt.savefig('mtcnn_bar.png')
     cap.release()
-    return processing_times
+    return average_processing_time
