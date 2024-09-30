@@ -5,7 +5,8 @@ import serial  # Import serial library for communication with microcontroller
 
 # Microcontroller serial communication settings
 # Adjust these based on your setup
-arduino = serial.Serial('COM9', 9600)  # Change 'COM3' to your Arduino's port
+
+# arduino = serial.Serial('COM9', 9600)  # Change 'COM3' to your Arduino's port
 
 # Face detection and drawing utilities
 mp_face_detection = mp.solutions.face_detection
@@ -69,9 +70,10 @@ with mp_face_detection.FaceDetection(
 
                 pan_position = max(0, min(pan_position, servo_pan_range))
                 tilt_position = max(0, min(tilt_position, servo_tilt_range))
+                print(pan_position, tilt_position)
 
                 # Send servo control commands (adjust format according to your microcontroller)
-                arduino.write(f"P{pan_position}\nT{tilt_position}\n".encode())
+                # arduino.write(f"P{pan_position}\nT{tilt_position}\n".encode())
 
                 # Draw bounding box and center point for visualization
                 cv2.rectangle(image, (box_x_min, box_y_min), (box_x_min + box_width, box_y_min + box_height), (0, 255, 0), 2)
@@ -86,4 +88,4 @@ with mp_face_detection.FaceDetection(
             break
 cap.release()
 cv2.destroyAllWindows()
-arduino.close()
+# arduino.close()

@@ -17,7 +17,7 @@ model_path = Path(r"D:\Documents\Campus\S5\2 - Embedded Systems Project\Repo\Fac
 
 latest_result = None
 
-def blazeface_detector(cap):
+def blazeface_detector(video,model_path):
     def print_result(result, output_image: mp.Image, timestamp_ms: int):
         global latest_result
         latest_result = result
@@ -31,7 +31,7 @@ def blazeface_detector(cap):
     )
 
     with FaceDetector.create_from_options(options) as detector:
-        # cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture(video)
         processing_times = []
         capture_count = 0
         StartTime = time.time()
@@ -65,7 +65,8 @@ def blazeface_detector(cap):
             plt.imshow(image_rgb)
             plt.axis('off')
             plt.title(f"Processing Time: {processing_time:.6f} seconds")
-            plt.show()
+            # plt.show()
+            plt.savefig(f'blazeface_{capture_count}.png')
             print(f"Processing Time: {processing_time:.6f} seconds")
 
             key = cv2.waitKey(1)
@@ -75,4 +76,13 @@ def blazeface_detector(cap):
         if processing_times:
             average_processing_time = sum(processing_times) / len(processing_times)
             print(f"Average Processing Time (excluding first capture): {average_processing_time:.6f} seconds")
+            plt.clf()
+            plt.bar(range(len(processing_times)), processing_times, color='blue')
+            plt.xlabel('Frame')
+            plt.ylabel('Time(s)')
+            plt.title('Time to detect face in frame')
+            plt.savefig('blazeface_bar.png')
+    cap.release()
+    return processing_times
 
+# li=blazeface_detector('vid1.mp4')

@@ -10,10 +10,11 @@ mp_holistics=mp.solutions.holistic
 mp_drawings=mp.solutions.drawing_utils
 holistic=mp_holistics.Holistic(min_detection_confidence=0.5,min_tracking_confidence=0.5)
 
-def holistic_detector(cap):
+def holistic_detector(video):
     with mp_holistics.Holistic(min_detection_confidence=0.5,min_tracking_confidence=0.5) as holistic:
         processing_times=[]
         capture_count=0
+        cap=cv2.VideoCapture(video)
         while cap.isOpened() and capture_count<11:
             ret,frame=cap.read()
             if not ret:
@@ -42,9 +43,18 @@ def holistic_detector(cap):
             plt.imshow(image_rgbnew)
             plt.axis('off')
             plt.title(f"Processing Time: {processing_time:.6f} seconds")
-            plt.show()
+            # plt.show()
+            plt.savefig(f'holistic_{capture_count}.png')
             print(f"Processing Time: {processing_time:.6f} seconds")
     if processing_times:
         average_processing_time=sum(processing_times)/len(processing_times)
         print(f"Average Processing Time(excluding first capture): {average_processing_time:.6f} seconds")
-    # cap.release()
+        plt.clf()
+        plt.bar(range(len(processing_times)), processing_times, color='blue')
+        plt.xlabel('Frame')
+        plt.ylabel('Time(s)')
+        plt.title('Time to detect face in frame')
+        plt.savefig('holistic_bar.png')
+    cap.release()
+    return processing_times
+    

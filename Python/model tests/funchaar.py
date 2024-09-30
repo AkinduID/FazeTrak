@@ -4,7 +4,8 @@ import IPython.display as display
 from IPython.display import clear_output
 import time
 
-def haar_detector(cap):
+def haar_detector(video):
+    cap=cv2.VideoCapture(video)
     face_detector = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
     processing_times = []
     capture_count = 0
@@ -27,11 +28,19 @@ def haar_detector(cap):
         plt.imshow(image_rgb)
         plt.axis('off')
         plt.title(f"Processing Time: {processing_time:.6f} seconds")
-        plt.show()
+        plt.savefig(f'haar_{capture_count}.png')
         print(f"Processing Time: {processing_time:.6f} seconds")
         key=cv2.waitKey(1)
         if key & 0xFF==ord('q'):
             break
     if processing_times:
-            average_processing_time=sum(processing_times)/len(processing_times)
-            print(f"Average Processing Time(excluding first capture): {average_processing_time:.6f} seconds")
+        average_processing_time=sum(processing_times)/len(processing_times)
+        print(f"Average Processing Time(excluding first capture): {average_processing_time:.6f} seconds")
+        plt.clf()
+        plt.bar(range(len(processing_times)), processing_times, color='blue')
+        plt.xlabel('Frame')
+        plt.ylabel('Time(s)')
+        plt.title('Time to detect face in frame')
+        plt.savefig('cascades_bar.png')
+    cap.release()
+    return processing_times
