@@ -57,7 +57,7 @@ def track_face(x, y, w, h):
     tilt_angle = max(tilt_min, min(tilt_max, tilt_angle))
 
     # Send angles to Arduino
-    move_servos(pan_angle, tilt_angle)
+    move_servos(tilt_angle, pan_angle)
 
 while True:
     ret, frame = cap.read()
