@@ -26,10 +26,18 @@ step = 7
 tolerance = 50
 pan_min=0
 tilt_min=0
+last_face_detect_time = time.time()
+timeout=5
 
 def move_servos(pan, tilt):
     command = f'P{pan}T{tilt}\n'
     arduino.write(command.encode())
+
+def reset_servos():
+    global pan_angle, tilt_angle
+    pan_angle = 90  # Reset pan servo to center position
+    tilt_angle = 65  # Reset tilt servo to center position
+    move_servos(pan_angle, tilt_angle)
 
 def track_face2(face_center_x, face_center_y):
     global pan_angle, tilt_angle
@@ -96,6 +104,8 @@ with mp_holistics.Holistic(min_detection_confidence=0.5, min_tracking_confidence
         cv2.circle(image, (int(center_x), int(center_y)), 5, (255, 0, 0), 2)
         # cv2.putText(image,f"{center_x,center_y}",(int(center_x), int(center_y)),cv2.FONT_HERSHEY_PLAIN, 1, (0, 196, 255), 1)  # Blue dot at the center of the frame
         if results.face_landmarks:
+            face_detected = True
+            last_face_detect_time = time.time()
             h, w, _ = image.shape
             face_landmarks = results.face_landmarks.landmark
             x_min = min([lm.x for lm in face_landmarks]) * w
@@ -114,6 +124,10 @@ with mp_holistics.Holistic(min_detection_confidence=0.5, min_tracking_confidence
             cv2.rectangle(image, (int(x_min), int(y_min)), (int(x_max), int(y_max)), (0, 255, 0), 2)
             cv2.line(image,(int(center_x),int(center_y)),(int(face_center_x),int(face_center_y)),(0,255,0),2)
             track_face2(face_center_x, face_center_y)
+        else:
+            face_detected=False
+        if not face_detected and (time.time() - last_face_detect_time > timeout):
+            reset_servos()
 
         cv2.imshow("Live face Tracking",image)
         key=cv2.waitKey(1)
