@@ -68,7 +68,7 @@ def track_face(face_center_x, face_center_y):
     # Determine step size based on distance (larger distance = larger step size)
     horizontal_step = max(1, int((horizontal_distance / center_x) * step))
     vertical_step = max(1, int((vertical_distance / center_y) * step))
-
+ 
     # Pan servo control (horizontal)
     if face_center_x < center_x - tolerance:
         pan_angle -= horizontal_step  # Move left
