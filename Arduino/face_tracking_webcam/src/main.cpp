@@ -1,5 +1,7 @@
 #include <Arduino.h>
 #include <Servo.h>
+#include <Arduino_FreeRTOS.h>
+#include <task.h>
 
 Servo panServo;
 Servo tiltServo;
