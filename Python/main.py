@@ -3,16 +3,20 @@ import mediapipe as mp # MediaPipe library for Face and Gesture detection
 import time # Time library for time tracking
 import serial # Serial library for communication with Arduino
 import pyvirtualcam
+from simple_pid import PID
 
 arduino = serial.Serial('COM9', 9600) # Change 'COM9' to your Arduino's port
 cap = cv2.VideoCapture(0) # Set up video capture
 mp_holistics = mp.solutions.holistic # Initialize MediaPipe Holistic model
 mp_drawings = mp.solutions.drawing_utils # MediaPipe drawing utility
 mp_hands = mp.solutions.hands # Initialize MediaPipe Hands model
+frame_width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
+frame_height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
 center_x = cap.get(cv2.CAP_PROP_FRAME_WIDTH) // 2 # Get the center of the frame
 center_y = cap.get(cv2.CAP_PROP_FRAME_HEIGHT) // 2 # Get the center of the frame
 vcam = pyvirtualcam.Camera(width=int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), height=int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)), fps=30)
-
+pan_pid = PID(1.0, 0.0, 0.1, setpoint=center_x)  # Adjust Kp, Ki, Kd as needed
+tilt_pid = PID(1.0, 0.0, 0.1, setpoint=center_y)
 face_detector = mp_holistics.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5)
 hand_detector = mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5)
 
@@ -24,12 +28,73 @@ tilt_max = 180
 pan_min = 0
 tilt_min = 0
 step = 7 # Step size for servo movement
-tolerance = 50 # Tolerance for face tracking
+tolerance = 7 # Tolerance for face tracking
 face_detected = False # Flag for face detection
 face_locked = False # Flag for face locking
 
 last_face_detect_time = time.time() # Time of last face detection
 timeout = 5 # Timeout for face tracking
+
+# PID variables
+Kp = 0.02  # Proportional gain
+Ki = 0.001  # Integral gain
+Kd = 0.05 # Derivative gain
+
+# Initialize PID state variables
+integral_pan = 0
+integral_tilt = 0
+previous_error_pan = 0
+previous_error_tilt = 0
+
+def track_face_pid(face_center_x, face_center_y):
+    global pan_angle, tilt_angle
+    global integral_pan, integral_tilt, previous_error_pan, previous_error_tilt
+    
+    # Calculate the error from the center positions
+    pan_error = abs(center_x - face_center_x)
+    tilt_error = abs(center_y - face_center_y)
+
+    # Calculate the integral term
+    integral_pan += pan_error
+    integral_pan = max(-10, min(10, integral_pan))
+    integral_tilt += tilt_error
+    integral_tilt = max(-10, min(10, integral_tilt))
+
+    # Calculate the derivative term
+    derivative_pan = pan_error - previous_error_pan
+    derivative_tilt = tilt_error - previous_error_tilt
+
+    # Calculate PID output
+    pan_output = Kp * pan_error + Ki * integral_pan + Kd * derivative_pan
+    tilt_output = Kp * tilt_error + Ki * integral_tilt + Kd * derivative_tilt
+
+    # Update previous error
+    previous_error_pan = pan_error
+    previous_error_tilt = tilt_error
+
+    if face_center_x < center_x - tolerance:
+        # pan_angle -= horizontal_step  # Move left min 0
+        pan_angle = max(pan_min, min(pan_max, int(pan_angle-pan_output)))
+    elif face_center_x > center_x + tolerance:
+        # pan_angle += horizontal_step  # Move right max 180
+        pan_angle = max(pan_min, min(pan_max, int(pan_angle+pan_output)))
+
+    # Tilt servo control (vertical)
+    if face_center_y < center_y - tolerance:
+        # tilt_angle -= vertical_step  # Move up min 0
+        tilt_angle = max(tilt_min, min(tilt_max, int(tilt_angle-tilt_output)))
+    elif face_center_y > center_y + tolerance:
+        # tilt_angle += vertical_step  # Move down max 180
+        tilt_angle = max(tilt_min, min(tilt_max, int(tilt_angle+tilt_output)))
+
+    # Constrain the outputs to a specific range, e.g., 0-180 degrees
+    # pan_angle = max(pan_min, min(pan_max, int(pan_angle+pan_output)))
+    # tilt_angle = max(tilt_min, min(tilt_max, int(tilt_angle+tilt_output)))
+
+    # Send angles to Arduino
+    move_servos(pan_angle, tilt_angle)
+    print(f"Face Center: ({face_center_x}, {face_center_y}), Pan Angle: {pan_angle}, Tilt Angle: {tilt_angle}, Pan Error: {pan_error}, Tilt Error: {tilt_error}")
+
 
 def detect_hand_gesture(hand_landmarks):
     """Detects if the hand is showing an open palm (lock) or fist (unlock)."""
@@ -100,7 +165,10 @@ def process_video():
         face_results = face_detector.process(image_rgb)
         hand_results = hand_detector.process(image_rgb)
         image_bgr = cv2.cvtColor(image_rgb, cv2.COLOR_RGB2BGR)
-        cv2.circle(image_bgr, (int(center_x), int(center_y)), 5, (255, 0, 0), 2)
+        cv2.circle(image_bgr, (int(center_x), int(center_y)), 5, (255, 0, 0), -1)
+        cv2.line(image_bgr, (int(center_x), 0), (int(center_x), int(frame_height)), (255,0,0), 2)
+        cv2.line(image_bgr, (0,int(center_y)), (int(frame_width), int(center_y)), (255,0,0), 2)
+        cv2.circle(image_bgr,(0,0),5,(255, 0, 0), -1)
         if face_results.face_landmarks:
             face_detected = True
             last_face_detect_time = time.time()
@@ -110,15 +178,15 @@ def process_video():
             x_max = max([lm.x for lm in face_landmarks]) * w
             y_min = min([lm.y for lm in face_landmarks]) * h
             y_max = max([lm.y for lm in face_landmarks]) * h
-            cv2.circle(image_bgr, (int(x_min), int(y_min)), 5, (255, 0, 0), 2)
+            cv2.circle(image_bgr, (int(x_min), int(y_min)), 5, (255, 0, 0), -1)
 
             face_center_x = (x_min + x_max) // 2.0
             face_center_y = (y_min + y_max) // 2.0
-            cv2.circle(image_bgr, (int(face_center_x),int(face_center_y)), 5, (0, 255, 0), 2)
+            cv2.circle(image_bgr, (int(face_center_x),int(face_center_y)), 5, (0, 255, 0), -1)
             cv2.rectangle(image_bgr, (int(x_min), int(y_min)), (int(x_max), int(y_max)), (0, 255, 0), 2)
             cv2.line(image_bgr,(int(center_x),int(center_y)),(int(face_center_x),int(face_center_y)),(0,255,0),2)
             if face_locked:
-                track_face(face_center_x, face_center_y)
+                track_face_pid(face_center_x, face_center_y)
         else:
             face_detected=False
         if hand_results.multi_hand_landmarks:
