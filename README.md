@@ -18,9 +18,6 @@ This project aims to develop a face tracking webcam. The system will detect and 
 <a href="https://wiki.python.org/moin/PyQt">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/qt/qt-original.svg" height="30" alt="qt logo" />
       </a>
-<a href="https://www.arduino.cc/">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" height="30" alt="arduino logo" />
-      </a>
 <a href="https://opencv.org/">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" height="30" alt="opencv logo" />
       </a>
@@ -29,6 +26,9 @@ This project aims to develop a face tracking webcam. The system will detect and 
       </a>
  <a href="https://code.visualstudio.com/">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" height="30" alt="vscode logo" />
+      </a>
+<a href="https://www.arduino.cc/">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" height="30" alt="arduino logo" />
       </a>
       <a href="https://platformio.org/">
         <img src="https://cdn.platformio.org/images/platformio-logo.17fdc3bc.png" height="30" alt="platformio logo" />
