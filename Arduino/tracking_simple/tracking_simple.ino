@@ -1,4 +1,5 @@
-#include <Servo.h>
+#include <ESP32Servo.h>
+
 
 Servo panServo;
 Servo tiltServo;

@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "face_tracking_webcam",
+			"path": "Arduino/face_tracking_webcam"
+		}
+	],
+	"settings": {}
+}
