@@ -1,7 +1,7 @@
 # Face Tracking Webcam Project
 
 ## Project Overview
-This project aims to develop a face tracking webcam. The system will detect and track faces in real-time, providing a robust solution for applications requiring automated monitoring and human-computer interaction. This repository will document the entire development process, from initial planning to final implementation.
+EyeRiz is a smart webcam capable of face recognition, gesture-based face locking, tracking, and release the lock, developed For the CS3283 - Embedded Systems Project in Semester 5. The system includes a standard consumer webcam, two servo motors mounted on a servo bracket for pan-tilt control, a microcontroller, LED indicators, and a custom desktop application. The app processes the video stream for face and gesture detection, calculates servo angles to center the face, and communicates with the microcontroller via serial. Servo Motors get the angles from the microcontroller and move the webcam which is also mounted on the servo bracket. Using the OBS Virtual Camera driver, the app streams the tracked video feed to other applications like Zoom while keeping the original feed locked to the desktop app.
 
 ## Features
 - Real-time face detection and tracking
