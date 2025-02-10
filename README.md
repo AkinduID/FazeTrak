@@ -3,6 +3,7 @@
 <a href="https://isocpp.org/"><img src="https://img.shields.io/badge/C++-00599C?style=flat&logo=c%2B%2B&logoColor=white"/></a>
 <a href="https://www.qt.io/"><img src="https://img.shields.io/badge/PyQt-41CD52?style=flat&logo=qt&logoColor=white"/></a>
 <a href="https://www.arduino.cc/"><img src="https://img.shields.io/badge/Arduino-00979D?style=flat&logo=arduino&logoColor=white"/></a>
+<a href="https://platformio.org/"><img src="https://img.shields.io/badge/PlatformIO-FF7F32?style=flat&logo=platformio&logoColor=white"/></a>
 <a href="https://code.visualstudio.com/"><img src="https://img.shields.io/badge/VS%20Code-007ACC?style=flat&logo=visual-studio-code&logoColor=white"/></a></a>
 <a href="https://opencv.org/"><img src="https://img.shields.io/badge/OpenCV-5C3EE8?style=flat&logo=opencv&logoColor=white"/></a>
 <a href="https://mediapipe.dev/"><img src="https://img.shields.io/badge/MediaPipe-2196F3?style=flat&logo=google&logoColor=white"/></a>
