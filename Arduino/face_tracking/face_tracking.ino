@@ -5,8 +5,9 @@ Servo panServo;
 Servo tiltServo;
 
 // Define pins for the servos
-int panPin = 9;    // Pin connected to pan servo
-int tiltPin = 10;  // Pin connected to tilt servo
+int panPin = 4;    // Pin connected to pan servo
+int tiltPin = 3;  // Pin connected to tilt servo
+int trackpin = 2;
 
 // Initial positions for servos
 int panAngle = 90;  // Initial position for pan
@@ -22,6 +23,7 @@ void setup() {
   // Move servos to initial positions
   panServo.write(panAngle);
   tiltServo.write(tiltAngle);
+  digitalWrite(trackpin,LOW);
 }
 
 void loop() {

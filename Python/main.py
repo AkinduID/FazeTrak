@@ -6,7 +6,7 @@ import pyvirtualcam
 from simple_pid import PID
 
 arduino = serial.Serial('COM12', 9600) # Change 'COM9' to your Arduino's port
-cap = cv2.VideoCapture(1) # Set up video capture
+cap = cv2.VideoCapture(0) # Set up video capture
 mp_holistics = mp.solutions.holistic # Initialize MediaPipe Holistic model
 mp_drawings = mp.solutions.drawing_utils # MediaPipe drawing utility
 mp_hands = mp.solutions.hands # Initialize MediaPipe Hands model

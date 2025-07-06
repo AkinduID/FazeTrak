@@ -15,7 +15,7 @@ class VideoThread(QThread):
 
     def __init__(self):
         super().__init__()
-        self.cap = cv2.VideoCapture(1)
+        self.cap = cv2.VideoCapture(0)
         self.vcam = pyvirtualcam.Camera(width=int(self.cap.get(cv2.CAP_PROP_FRAME_WIDTH)),
                                         height=int(self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT)), fps=30)
         self.face_detector = mp.solutions.holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5)
