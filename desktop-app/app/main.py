@@ -1,4 +1,5 @@
 from PyQt5 import QtWidgets
+from PyQt5.QtCore import pyqtSlot as Slot, QTimer, Qt
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtCore import pyqtSlot as Slot, QTimer
 import sys
@@ -34,7 +35,10 @@ class MainApp(QtWidgets.QMainWindow):
 
     @Slot(QImage)
     def update_frame(self, image):
-        self.label.setPixmap(QPixmap.fromImage(image))
+        pixmap = QPixmap.fromImage(image)
+        scaled_pixmap = pixmap.scaled(self.label.width(), self.label.height(), 
+                                   Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        self.label.setPixmap(scaled_pixmap)
 
     def start_tracking(self):
         if not self.video_thread.isRunning():
