@@ -7,3 +7,4 @@ Face-Tracking-WebCam.code-workspace
 .vscode/c_cpp_properties.json
 .vscode/launch.json
 .vscode/ipch
+desktop-app/app/__pycache__/
