@@ -50,11 +50,8 @@ The system uses:
 - ✅ **Real-time Face Detection** - Powered by MediaPipe
 - ✅ **Gesture-based Control** - Lock/unlock tracking with hand gestures
 - ✅ **Autonomous Tracking** - Servos automatically center face in frame
-- ✅ **Kalman Filter State Estimation** - Smooth tracking with noise reduction
 - ✅ **Virtual Camera Support** - Stream to OBS, Zoom, Teams
 - ✅ **Desktop Application** - Full PyQt5 GUI with live preview
-- ✅ **ESP32-C3 Integration** - Wireless-capable servo control
-- ✅ **Configurable Parameters** - Easy tuning via `configs.py`
 
 ---
 
@@ -93,7 +90,6 @@ Face-Tracking-WebCam/
 - **Webcam**: Logitech C270 HD (or compatible USB camera)
 - **Servo Bracket**: Pan-Tilt mount
 - **USB Cable**: Type-C (ESP32-C3 connection)
-- **5V Power Supply**: For servo motors (optional external power)
 
 ### Hardware Connections
 
@@ -117,7 +113,6 @@ Face-Tracking-WebCam/
 
 ### ESP32-C3 Firmware
 - PlatformIO
-- Arduino Framework
 - ESP32Servo library
 
 ---
