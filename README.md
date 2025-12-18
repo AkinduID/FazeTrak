@@ -16,6 +16,10 @@ FazeTrak is a smart webcam capable of face recognition, gesture-based face locki
 - Locking and Unlocking a face using hand gestures
 - Desktop Application for further features
 
-  
+<div class="image-container">
+  <img src="https://github.com/AkinduID/Face-Tracking-WebCam/blob/main/Assets/esp32_c3_supermini.jpeg" width="200" alt="Logitech C270 HD webCam" />
+  <img src="https://github.com/AkinduID/Face-Tracking-WebCam/blob/main/Assets/circuit.png" width="200" alt="Pan and Tilt Servo Bracket" />
+</div>
+
 ## Read the wiki for the weekly progress
 https://github.com/AkinduID/FazeTrak/wiki
