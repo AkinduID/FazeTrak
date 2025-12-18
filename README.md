@@ -1,6 +1,6 @@
 # FazeTrak
 
-<div align="center">
+<div align="left">
 
 <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white"/></a>
 <a href="https://isocpp.org/"><img src="https://img.shields.io/badge/C++-00599C?style=flat&logo=c%2B%2B&logoColor=white"/></a>
@@ -27,11 +27,9 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [System Architecture](#system-architecture)
-- [Configuration](#configuration)
-- [Troubleshooting](#troubleshooting)
 - [Documentation](#documentation)
 - [Contributing](#contributing)
-- [License](#license)
+
 
 ---
 
@@ -70,8 +68,7 @@ Face-Tracking-WebCam/
 │   │   ├── video_thread.py         # Video capture & face tracking
 │   │   ├── servo_controller.py     # Serial communication with ESP32-C3
 │   │   ├── gesture.py              # Hand gesture detection
-│   │   ├── kalman_filter.py        # 2D Kalman Filter for smoothing
-│   │   └── configs.py              # Configuration parameters
+│   │    parameters
 │   ├── requirements.txt
 │   └── README.md
 ├── device-firmware/
@@ -79,10 +76,6 @@ Face-Tracking-WebCam/
 │   │   └── main.cpp                # ESP32-C3 servo control firmware
 │   ├── platformio.ini
 │   └── README.md
-├── Python/
-│   ├── component test files/
-│   ├── model tests/
-│   └── port.py                     # Serial port enumeration utility
 ├── assets/
 │   ├── esp32_c3_supermini.jpeg
 │   ├── circuit.png
@@ -182,8 +175,8 @@ python -m app.main
 - **Start Tracking** - Begin face detection and servo control
 - **Stop Tracking** - Stop the tracking system
 - **Hand Gestures**:
-  - ✋ **Open Palm** → Lock face tracking
-  - ✊ **Closed Fist** → Unlock face tracking
+  - ✋ **Open Palm** → Release face lock
+  - ✊ **Closed Fist** → Lock face and start tracking
 
 **Visual Feedback:**
 - 🔵 **Blue circle** - Raw face detection (noisy)
@@ -205,10 +198,6 @@ python -m app.main
 │                 │                    │
 │  ┌──────────────▼────────────────┐  │
 │  │  Face Detection (MediaPipe)   │  │
-│  └──────────────┬────────────────┘  │
-│                 │                    │
-│  ┌──────────────▼────────────────┐  │
-│  │  Kalman Filter (Smoothing)    │  │
 │  └──────────────┬────────────────┘  │
 │                 │                    │
 │  ┌──────────────▼────────────────┐  │
@@ -234,42 +223,6 @@ python -m app.main
 
 ---
 
-## ⚙️ Configuration
-
-Edit `desktop-app/app/configs.py` to adjust:
-
-```python
-# Kalman Filter tuning
-KF_PROCESS_NOISE = 0.01        # Process model trust (lower = more trust)
-KF_MEASUREMENT_NOISE = 25      # Detection trust (lower = more trust)
-
-# Servo control zones
-SERVO_TOLERANCE = 80           # Dead zone in pixels
-SERVO_STEP_SMALL = 1           # Close-range step size
-SERVO_STEP_MEDIUM = 2          # Mid-range step size
-SERVO_STEP_LARGE = 3           # Far-range step size
-SERVO_ZONE_MEDIUM = 150        # Pixels threshold for medium step
-SERVO_ZONE_LARGE = 250         # Pixels threshold for large step
-SERVO_UPDATE_RATE = 2          # Update rate throttle (frames)
-SERVO_PAN_CENTER = 90          # Pan home position
-SERVO_TILT_CENTER = 65         # Tilt home position
-```
-
----
-
-## 🐛 Troubleshooting
-
-| Issue | Solution |
-|-------|----------|
-| Servos don't move | Check serial connection, verify ESP32 firmware uploaded |
-| Video freezes | Reduce detection confidence, increase frame skip |
-| Overshooting | Decrease step sizes, increase `SERVO_TOLERANCE` |
-| Hunting (oscillating) | Increase `SERVO_UPDATE_RATE`, widen tolerance zone |
-| Virtual camera not showing | Install OBS Virtual Camera driver |
-| Port detection fails | Run `python port.py` to list available COM ports |
-
----
-
 ## 📚 Documentation
 
 For detailed progress and technical documentation, see:
@@ -289,43 +242,4 @@ Contributions are welcome! Please follow these steps:
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
----
 
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
----
-
-## 👥 Authors
-
-- **Project Team** - CS3283 Embedded Systems, Semester 5
-
----
-
-## 📞 Support & Questions
-
-For questions or issues:
-- Check the [Wiki](https://github.com/AkinduID/FazeTrak/wiki)
-- Open an [Issue](https://github.com/AkinduID/FazeTrak/issues)
-- Review this README
-
----
-
-## 🎓 Acknowledgments
-
-- **MediaPipe** - Face detection framework
-- **OpenCV** - Computer vision library
-- **PyQt5** - Desktop GUI framework
-- **ESP32-C3** - Microcontroller platform
-- **PlatformIO** - Embedded development
-
----
-
-<div align="center">
-
-**Made with ❤️ for CS3283 - Embedded Systems Project**
-
-[⬆ back to top](#fazetrak)
-
-</div>
