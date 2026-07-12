@@ -105,11 +105,12 @@ Face-Tracking-WebCam/
 ## 💻 Software Requirements
 
 ### Desktop Application
-- Python 3.8+
+- Python 3.10
 - PyQt5
 - OpenCV (cv2)
 - MediaPipe
 - pyvirtualcam
+- OBS Virtual Camera Plugin
 
 ### ESP32-C3 Firmware
 - PlatformIO
@@ -129,14 +130,17 @@ Face-Tracking-WebCam/
 
 2. **Create virtual environment** (recommended)
    ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
    ```
 
 3. **Install dependencies**
    ```bash
    pip install -r requirements.txt
    ```
+
+4. **Download OBS Studio**
+https://obsproject.com/download
 
 ### ESP32-C3 Firmware Setup
 
