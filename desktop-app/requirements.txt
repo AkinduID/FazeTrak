@@ -1,4 +1,8 @@
 PyQt5
 opencv-python
-mediapipe
-pyvirtualcam 
+# Pinned: mediapipe >=0.10.30 dropped the legacy `mediapipe.solutions`
+# (Holistic/Hands) API that this app relies on, in favor of the newer
+# Tasks API. Stay below that until the app is migrated to Tasks.
+mediapipe<0.10.30
+pyvirtualcam
+pyserial

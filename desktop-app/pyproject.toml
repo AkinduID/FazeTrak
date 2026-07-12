@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fazetrak"
+version = "1.0.0"
+description = "Webcam-based face/gesture tracking with pan-tilt servo control."
+requires-python = ">=3.9"
+dependencies = [
+    "PyQt5",
+    "opencv-python",
+    "mediapipe<0.10.30",  # >=0.10.30 dropped the legacy `mediapipe.solutions` API this app uses
+    "pyvirtualcam",
+    "pyserial",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
