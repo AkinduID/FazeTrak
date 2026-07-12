@@ -13,6 +13,8 @@
 
 **Smart face-tracking webcam system with gesture control and ESP32-C3 servo integration**
 
+<img src="https://github.com/AkinduID/FazeTrak/blob/main/assets/fazetrak.jpg"/>
+
 </div>
 
 ---
